@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:learn_flutter/models/CarModel.dart';
 import 'package:provider/provider.dart';
 
@@ -79,14 +80,23 @@ class _AddButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var cart = Provider.of<CartModel>(context);
+    Widget child;
+    if (cart.loadings.contains(item)) {
+      child = SpinKitChasingDots(
+        color: Colors.blue,
+        size: 16.0,
+      );
+    } else if (cart.items.contains(item)) {
+      child = Icon(Icons.check, semanticLabel: 'ADDED');
+    } else {
+      child = Text('ADD');
+    }
     return FlatButton(
       onPressed: () {
         cart.items.contains(item) ? cart.remove(item) : cart.add(item);
       },
       splashColor: Theme.of(context).primaryColor,
-      child: cart.items.contains(item)
-          ? Icon(Icons.check, semanticLabel: 'ADDED')
-          : Text('ADD'),
+      child: child,
     );
   }
 }

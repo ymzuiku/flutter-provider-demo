@@ -14,26 +14,27 @@ class Cart extends StatelessWidget {
         backgroundColor: Colors.white,
       ),
       body: Container(
-          color: Colors.yellow,
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(32),
-                  child: _CartList(),
-                ),
+        color: Colors.yellow,
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(32),
+                child: _CartList(),
               ),
-              Container(
-                height: 4,
-                color: Colors.black,
-              ),
-              _CartTotal(),
-              IconButton(
-                icon: Icon(Icons.arrow_back),
-                onPressed: () => Navigator.pop(context),
-              ),
-            ],
-          )),
+            ),
+            Container(
+              height: 4,
+              color: Colors.black,
+            ),
+            _CartTotal(),
+            IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

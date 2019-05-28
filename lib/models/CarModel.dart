@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 
 const _itemNames = [
@@ -34,18 +32,23 @@ class Item {
 }
 
 class CartModel extends ChangeNotifier {
-  final List<Item> _items = [];
-  UnmodifiableListView<Item> get items => UnmodifiableListView(_items);
+  final Set<Item> items = new Set();
+  final Set<Item> loadings = new Set();
 
-  int get totalPrice => _items.length;
+  int get totalPrice => items.length;
 
-  void add(Item item) {
-    _items.add(item);
+  void add(Item item) async {
+    loadings.add(item);
+    notifyListeners();
+    await Future.delayed(Duration(milliseconds: 1600));
+    loadings.remove(item);
+    items.add(item);
     notifyListeners();
   }
 
   void remove(Item item) {
-    _items.remove(item);
+    loadings.remove(item);
+    items.remove(item);
     notifyListeners();
   }
 }
