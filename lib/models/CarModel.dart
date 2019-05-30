@@ -25,7 +25,7 @@ class Item {
   Item(this.id) : name = _itemNames[id % _itemNames.length];
 
   @override
-  int get hashCode => 10;
+  int get hashCode => id;
 
   @override
   bool operator ==(other) => other is Item && other.id == id;
