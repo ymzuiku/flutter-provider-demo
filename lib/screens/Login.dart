@@ -15,6 +15,15 @@ class Login extends StatelessWidget {
             },
           ),
           _TextFieldName(),
+          Consumer<Models>(
+            builder: (c, m, _) {
+              return TextField(
+                onChanged: (v) {
+                  m.user.setName(v);
+                },
+              );
+            },
+          ),
         ],
       ),
     );
